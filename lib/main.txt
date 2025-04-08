@@ -1,0 +1,128 @@
+import 'package:flutter/material.dart';
+import 'package:grid_view/provincias.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Províncias de Moçambique',
+      theme: ThemeData(primarySwatch: Colors.green),
+      home: ProvinciasListView(),
+    );
+  }
+}
+
+class ProvinciasListView extends StatelessWidget {
+  final List<Provincias> provincias = [
+    Provincias(
+      'Gaza',
+      'Famosa por suas reservas naturais e cultura tradicional.',
+      "https://images.unsplash.com/photo-1526998758291-f87c4c1a8fff?q=80&w=2075&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ),
+    Provincias(
+      'Cabo Delgado',
+      'Localizada no norte, rica em gás natural e recursos minerais.',
+      "https://plus.unsplash.com/premium_photo-1675624628827-e4ec8857f720?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8emFtYmV6aWF8ZW58MHx8MHx8fDA%3D",
+    ),
+    Provincias(
+      'Maputo (Província)',
+      'Cerca a capital, com regiões urbanas e rurais.',
+      "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ),
+    Provincias(
+      'Nampula',
+      'Uma das províncias mais populosas, com economia crescente.',
+      "https://images.unsplash.com/photo-1699800709647-649643a39de7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bmFtcHVsYXxlbnwwfHwwfHx8MA%3D%3D",
+    ),
+    Provincias(
+      'Niassa',
+      'Maior província em área, com muita biodiversidade.',
+      "https://images.unsplash.com/photo-1526998758291-f87c4c1a8fff?q=80&w=2075&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ),
+    Provincias(
+      'Sofala',
+      'Lar do Porto da Beira, grande centro comercial.',
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ),
+    Provincias(
+      'Tete',
+      'Conhecida por suas minas de carvão e o Rio Zambeze.',
+      "https://images.unsplash.com/photo-1465189684280-6a8fa9b19a7a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ),
+    Provincias(
+      "Zambézia",
+      "Maputo capital",
+      "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Províncias de Moçambique')),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          height: 300,
+          child: ListView.builder(
+            itemCount: provincias.length,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              final provincia = provincias[index];
+              return Container(
+                width: 250,
+                margin: EdgeInsets.only(right: 12),
+                child: Card(
+                  elevation: 4,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(16),
+                        ),
+                        child: Image.network(
+                          provincia.imagem,
+                          height: 150,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          provincia.titulo,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Text(
+                          provincia.descricao,
+                          style: TextStyle(fontSize: 14),
+                        ),
+                      ),
+                      SizedBox(height: 8),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}

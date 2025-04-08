@@ -1,0 +1,7 @@
+class Provincias {
+  final String titulo;
+  final String descricao;
+  final String imagem;
+
+  Provincias(this.titulo, this.descricao, this.imagem);
+}
